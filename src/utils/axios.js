@@ -32,20 +32,20 @@ export default instance;
  * @param headers
  * @returns {Promise}
  */
-export function request(methed,url, data = {},headers) {
-    return new Promise((resolve, reject) => {
-        instance({
-            method: methed || 'post',
-            url:url,
-            params: methed === 'get' ? data :'',
-            data: methed !== 'get' ?  data :'',
-            headers: headers || {'Content-Type':'application/json'},
-        })
-        .then(response => {
-            resolve(response.data);
-        })
-        .catch(err => {
-            reject(err)
-        })
-    })
-}
+// export function request(methed,url, data = {},headers) {
+//     return new Promise((resolve, reject) => {
+//         instance({
+//             method: methed || 'post',
+//             url:url,
+//             params: methed === 'get' ? data :'',
+//             data: methed !== 'get' ?  data :'',
+//             headers: headers || {'Content-Type':'application/json'},
+//         })
+//         .then(response => {
+//             resolve(response.data);
+//         })
+//         .catch(err => {
+//             reject(err)
+//         })
+//     })
+// }
