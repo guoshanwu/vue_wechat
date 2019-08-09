@@ -10,10 +10,6 @@ import '@/utils/vant'
 import FastClick from 'fastclick'
 FastClick.attach(document.body)
 
-//vue-scroller刷新组件
-import VueScroller from 'vue-scroller'
-Vue.use(VueScroller)
-
 Vue.config.productionTip = false
 
 new Vue({

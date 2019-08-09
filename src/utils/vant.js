@@ -1,15 +1,11 @@
 import Vue from 'vue'
-import { Dialog } from 'vant';
-import { Toast } from 'vant';
+import { Dialog, Toast, Lazyload } from 'vant';
 Vue.use(Toast);
+Vue.use(Lazyload);	//图片懒加载
 
 //注册全局组件
-import header from '@/components/layout/header'
 import footer from '@/components/layout/footer'
-import tab from '@/components/layout/tab'
-Vue.component('lg-header', header);
 Vue.component('lg-footer', footer);
-Vue.component('lg-tab', tab);
 
 //注册全局方法
 function dialogAlert(params,submit) {
