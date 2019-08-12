@@ -17,7 +17,7 @@ instance.interceptors.request.use(config => {
 
 instance.interceptors.response.use(response => {
     const res = response.data;
-    return response;
+    return res;
 }, error => {
     return Promise.reject(error);
 });
@@ -28,7 +28,7 @@ export default instance;
  * 封装所有请求
  * @param methed
  * @param url
- * @param data 
+ * @param data
  * @param headers
  * @returns {Promise}
  */

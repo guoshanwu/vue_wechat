@@ -11,7 +11,7 @@ export function getSlider(params){
 };
 
 //列表
-export function getRecommend(params){
+export function getList(params){
 	return request({
 		url: 'api/Vote',
 		method: 'get',
