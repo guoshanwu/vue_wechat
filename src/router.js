@@ -11,6 +11,16 @@ export default new Router({
       path: '/',
       name: 'home',
       component: ()=>import('@/views/home/home.vue')
-    }
+    },
+		{
+			path: '/voteDetail',
+			name: '/voteDetail',
+			component: () => import('@/views/vote/index.vue')
+		},
+		{
+			path: '/detail',
+			name: '/detail',
+			component: () => import('@/views/vote/detail.vue')
+		}
   ]
 })

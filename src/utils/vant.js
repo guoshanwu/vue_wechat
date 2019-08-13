@@ -1,6 +1,5 @@
 import Vue from 'vue'
-import { Dialog, Toast, Lazyload } from 'vant';
-Vue.use(Toast);
+import { Dialog, Lazyload } from 'vant';
 Vue.use(Lazyload);	//图片懒加载
 
 //注册全局组件
