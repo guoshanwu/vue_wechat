@@ -20,7 +20,7 @@
 		},
 		data() {
 			return {
-				
+				fileList: []
 			}
 		},
 
@@ -28,5 +28,7 @@
 </script>
 
 <style lang="less">
-
+	.van-cell {
+		font-size: 16px;
+	}
 </style>
