@@ -26,4 +26,13 @@ export function castVote(params){
 		method: 'post',
 		data: params
 	})
-}
+};
+
+//图片上传
+export function upload(params){
+  return request({
+      url: 'api/Upload/upload',
+      method: 'post',
+      data: params
+  })
+};
