@@ -13,14 +13,9 @@ export default new Router({
       component: ()=>import('@/views/home/home.vue')
     },
 		{
-			path: '/voteDetail',
-			name: '/voteDetail',
-			component: () => import('@/views/vote/index.vue')
+			path: '/join',
+			name: '/join',
+			component: () => import('@/views/vote/join.vue')
 		},
-		{
-			path: '/detail',
-			name: '/detail',
-			component: () => import('@/views/vote/detail.vue')
-		}
   ]
 })

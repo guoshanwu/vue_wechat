@@ -12,13 +12,15 @@
 			<!-- 列表 -->
 			<ul class="list">
 				<li class="item" v-for="(list,index) in lists" :key='index'>
-					<VoteDetail></VoteDetail>
-					<!-- 跳到产品详情页 -->
-					<div class="link" :to="{name: 'vote',params: {id:list.id, openid:list.openid}}">
-						<p class="pic"><img class="img" v-lazy="list.url[0]"></p>
+					<!-- 详情页 -->
+					<VoteDetail ref="voteDetail" :voteData="{id:list.id, openid:list.openid, all_url:list.all_url}"></VoteDetail>
+					<!-- 列表 -->
+					<div class="link" @click="showDetail(index)">
+						<p class="pic"><img class="img" v-lazy="list.show_url"></p>
 						<p class="name">{{list.name}}</p>
 						<p class="number">{{list.num}}</del></p>
 					</div>
+					<!-- 投票按钮 -->
 					<p class="click" @click="castVote({id:list.id, openid:list.openid})">投票</p>
 				</li>
 			</ul>
@@ -48,7 +50,7 @@
 				lists: [], //列表
 				page: 1,
 				limit: 10,
-				lastPage: 1
+				lastPage: 1,
 			};
 		},
 		//一般在created()生命周期函数里获取远程数据
@@ -95,6 +97,10 @@
 						Toast.fail(res.msg);
 					}
 				})
+			},
+			//显示详情
+			showDetail(index){
+				this.$refs.voteDetail[index].isShow();	//父组件通过 $refs 来调用子组件(isShow). [index]索引指定调用的子组件
 			}
 		}
 	}
