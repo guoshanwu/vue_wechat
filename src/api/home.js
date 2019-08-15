@@ -36,3 +36,12 @@ export function upload(params){
       data: params
   })
 };
+
+//新增用户
+export function store(params){
+	return request({
+		url: 'api/Vote',
+		method: 'post',
+		data: params
+	})
+};
