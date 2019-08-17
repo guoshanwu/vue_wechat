@@ -1,11 +1,12 @@
 <template>
-    <van-tabbar 
-        v-model="active" 
+    <van-tabbar
+        v-model="active"
         active-color="#07c160"
         @change="tabClick"
     >
         <van-tabbar-item icon="wap-home" replace to="/">首页</van-tabbar-item>
-        <van-tabbar-item icon="chart-trending-o" replace to="/join">排行榜</van-tabbar-item>
+        <van-tabbar-item icon="chart-trending-o" replace to="/rank">排行榜</van-tabbar-item>
+        <van-tabbar-item icon="records" replace to="/join">活动报名</van-tabbar-item>
         <van-tabbar-item icon="orders-o" replace to="/detail">活动说明</van-tabbar-item>
     </van-tabbar>
 </template>

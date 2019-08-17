@@ -15,7 +15,7 @@
 		<!-- 提交按钮 -->
 		<van-button type="primary" size="large" round @click="submit" :style="{display: 'block', margin: '0 auto', width: '80%'}">提交</van-button>
 		<!-- 底部 -->
-		<lg-footer :index="1"></lg-footer>
+		<lg-footer :index="2"></lg-footer>
 	</div>
 </template>
 
@@ -52,25 +52,27 @@
 		methods: {
 			//图片上传
 			afterRead(){
-				let formdata = new FormData(); //创建formData对象
 				//多张图片分次上传
 				for (let n = 0; n < this.fileList.length; n++) {
+					let formdata = new FormData(); //创建formData对象
 					formdata.append('file', this.fileList[n].file);
-					upload(formdata).then(res => {
-						if (res.code === 1) {
-							this.imagesIds = this.imagesIds.concat(res.data.id); //数组+1
-							Toast.success('上传成功');
-						}else{
-							Toast.fail(res.msg);
-						}
-					})
+          if(!this.fileList[n].hasOwnProperty("id")){ //防止重复上传
+            upload(formdata).then(res => {
+            	if (res.code === 1) {
+                this.fileList[n].id = res.data.id; //图片添加id,用于删除和防止重复上传
+            		this.imagesIds = this.imagesIds.concat(res.data.id); //数组+1
+            		Toast.success('上传成功');
+            	}else{
+            		Toast.fail(res.msg);
+            	}
+            })
+          }
 				}
 			},
 			//删除预览图片按钮
-			deleteImg(e) {
-				console.log(e);
-				this.fileList.splice(e, 1);
-				console.log(this.fileList);
+			deleteImg(file) {
+        this.imagesIds.remove(file.id);  //删除索引对应的id
+        Toast.success('删除成功');
 			},
 			//提交
 			submit(){
@@ -98,6 +100,9 @@
 					remark: this.remark,
 					images_ids: this.imagesIds
 				};
+        if(this.fileList.length !== this.imagesIds.length){
+          Toast.fail('图片正在上传中');
+        }
 				store(params).then(res => {
 					if(res.code === 1){
 						Toast.success('活动参加成功');
@@ -109,6 +114,13 @@
 			},
 		},
 	}
+
+  Array.prototype.remove = function (val) {
+      var index = this.indexOf(val);
+      if (index > -1) {
+          this.splice(index, 1);
+      }
+  };
 </script>
 
 <style lang="less">
