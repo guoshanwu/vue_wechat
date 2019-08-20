@@ -18,7 +18,7 @@
 					<div class="link" @click="showDetail(index)">
 						<p class="pic"><img class="img" v-lazy="list.show_url"></p>
 						<p class="name">{{list.name}}</p>
-						<p class="number">{{list.num}}</del></p>
+						<p class="number">{{list.num}}票</p>
 					</div>
 					<!-- 投票按钮 -->
 					<p class="click" @click="castVote({id:list.id, openid:list.openid})">投票</p>

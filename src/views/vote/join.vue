@@ -46,50 +46,50 @@
 				name: '',
 				mobile: '',
 				remark: '',
-				imagesIds: [] ,//图片id
+				imagesIds: [], //图片id
 			}
 		},
 		methods: {
 			//图片上传
-			afterRead(){
+			afterRead() {
 				//多张图片分次上传
 				for (let n = 0; n < this.fileList.length; n++) {
 					let formdata = new FormData(); //创建formData对象
 					formdata.append('file', this.fileList[n].file);
-          if(!this.fileList[n].hasOwnProperty("id")){ //防止重复上传
-            upload(formdata).then(res => {
-            	if (res.code === 1) {
-                this.fileList[n].id = res.data.id; //图片添加id,用于删除和防止重复上传
-            		this.imagesIds = this.imagesIds.concat(res.data.id); //数组+1
-            		Toast.success('上传成功');
-            	}else{
-            		Toast.fail(res.msg);
-            	}
-            })
-          }
+					if (!this.fileList[n].hasOwnProperty("id")) { //防止重复上传
+						upload(formdata).then(res => {
+							if (res.code === 1) {
+								this.fileList[n].id = res.data.id; //图片添加id,用于删除和防止重复上传
+								this.imagesIds = this.imagesIds.concat(res.data.id); //数组+1
+								Toast.success('上传成功');
+							} else {
+								Toast.fail(res.msg);
+							}
+						})
+					}
 				}
 			},
 			//删除预览图片按钮
 			deleteImg(file) {
-        this.imagesIds.remove(file.id);  //删除索引对应的id
-        Toast.success('删除成功');
+				this.imagesIds.remove(file.id); //删除索引对应的id
+				Toast.success('删除成功');
 			},
 			//提交
-			submit(){
-				if(this.name === ''){
+			submit() {
+				if (this.name === '') {
 					Toast.fail('用户名不能为空');
 					return;
 				}
-				if(this.mobile === ''){
+				if (this.mobile === '') {
 					Toast.fail('手机号不能为空');
 					return;
 				}
-				let myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
+				let myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
 				if (!myreg.test(this.mobile)) {
 					Toast.fail('手机号格式有误');
 					return;
 				}
-				if(this.imagesIds.length === 0){
+				if (this.imagesIds.length === 0) {
 					Toast.fail('宝贝萌图最少上传一张');
 					return;
 				}
@@ -100,27 +100,27 @@
 					remark: this.remark,
 					images_ids: this.imagesIds
 				};
-        if(this.fileList.length !== this.imagesIds.length){
-          Toast.fail('图片正在上传中');
-        }
+				if (this.fileList.length !== this.imagesIds.length) {
+					Toast.fail('图片正在上传中');
+				}
 				store(params).then(res => {
-					if(res.code === 1){
+					if (res.code === 1) {
 						Toast.success('活动参加成功');
-						this.$router.push("/");	//成功后跳到主页
-					}else{
+						this.$router.push("/"); //成功后跳到主页
+					} else {
 						Toast.fail(res.msg);
 					}
 				})
 			},
 		},
 	}
-
-  Array.prototype.remove = function (val) {
-      var index = this.indexOf(val);
-      if (index > -1) {
-          this.splice(index, 1);
-      }
-  };
+	//删除数组元素
+	Array.prototype.remove = function(val) {
+		var index = this.indexOf(val);
+		if (index > -1) {
+			this.splice(index, 1);
+		}
+	};
 </script>
 
 <style lang="less">
